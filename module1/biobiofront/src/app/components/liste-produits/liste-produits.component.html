@@ -1,0 +1,23 @@
+<div class="card bg-light mb-3">
+    <h2 class="card-title">
+        les produits biobio
+    </h2>
+    <div class="card-body">
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>nom</th>
+                    <th>prix</th>
+                    <th>description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let p of produits'>
+                    <td>{{p.nom}}</td>
+                    <td>{{p.prix}}</td>
+                    <td>{{p.description}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
