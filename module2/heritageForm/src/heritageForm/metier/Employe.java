@@ -2,6 +2,8 @@ package heritageForm.metier;
 
 import java.time.LocalDate;
 
+// interdire heritage d'employe
+//public final class Employe extends Personne
 public class Employe extends Personne
 {
 	private String poste;
@@ -21,10 +23,11 @@ public class Employe extends Personne
 		super(id, nom, prenom, dateNaissance);
 		setPoste(poste);
 		setSalaire(salaire);
+		
 	}
 	
 	@Override
-	public String toString() {
+	public final String toString() {
 		// super.methode permet de rappeler explicitement un méthode héritée
 		// même si on l'a overridé à notre niveau
 		// on ne peut pas courcircuiter notre parent super.super pas possible
@@ -32,6 +35,22 @@ public class Employe extends Personne
 		
 		return "Employe [poste=" + poste + ", salaire=" + salaire + "] "
 					+  super.toString();
+	}
+	
+	@Override
+	public String saveToCsv() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.saveToCsv())
+		  .append(',')
+		  .append(getPoste())
+		  .append(',')
+		  .append(getSalaire());
+		return sb.toString();
+	}
+	
+	@Override
+	public String description() {
+		return getNom() + " payé " + getSalaire();
 	}
 	
 	

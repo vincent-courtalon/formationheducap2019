@@ -2,8 +2,12 @@ package heritageForm.metier;
 
 import java.time.LocalDate;
 
-public class Personne {
-	private int id;
+// la classe Personne est abstraite
+// non instantiable
+public abstract class Personne {
+	// id sera accessible directement
+	// par mes descendants et les classes dans le même package
+	protected int id;
 	private String nom;
 	private String prenom;
 	private LocalDate dateNaissance;
@@ -31,7 +35,19 @@ public class Personne {
 		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + "]";
 	}
 	
+	public String saveToCsv() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getId()).append(',')
+							.append(getNom())
+							.append(',')
+							.append(getPrenom())
+							.append(',')
+							.append(getDateNaissance());
+		return sb.toString();
+	}
 	
+	// méthode abstraite, sans implémentation
+	public abstract String description();
 	
 
 }
