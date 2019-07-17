@@ -1,0 +1,122 @@
+package firstswingform;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+
+public class Fenetre2 extends JFrame implements ActionListener {
+	public final static String LOAD_COMMAND = "load";
+	public final static String SAVE_COMMAND = "save";
+	
+	
+	private JButton boutonLoad;
+	private JButton boutonSave;
+	private JTextField nomFichier;
+	private JTextArea contenuFichier;
+	
+	public Fenetre2() {
+		super("ma giga fenetre");
+		setSize(500, 400);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// definit cinq zones dans la fenetre ou placer un composant
+		// ouest, est, nord, sud, centre
+		setLayout(new BorderLayout());
+		
+		// un panel horizontal au nord de ma fenetre
+		JPanel panelNord = new JPanel();
+		BoxLayout layoutNord = new BoxLayout(panelNord, BoxLayout.X_AXIS);
+		panelNord.setLayout(layoutNord);
+		
+		add(panelNord, BorderLayout.NORTH);
+		
+		// je remplis mon panel nord
+		boutonLoad = new JButton("chargement");
+		panelNord.add(boutonLoad);
+		boutonSave = new JButton("sauvegarde");
+		panelNord.add(boutonSave);
+		nomFichier = new JTextField();
+		panelNord.add(nomFichier);
+		// ma fenetre (via actionPerformed) ecoute au click de ces deux boutons
+		boutonLoad.addActionListener(this);
+		boutonLoad.setActionCommand(LOAD_COMMAND);
+		boutonSave.addActionListener(this);
+		boutonSave.setActionCommand(SAVE_COMMAND);
+		
+		// je veux mettre ma textArea au centre, avec barre de défilement
+	
+		contenuFichier = new JTextArea();
+		add(new JScrollPane(contenuFichier), BorderLayout.CENTER);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch(e.getActionCommand()) {
+			case LOAD_COMMAND:
+				//JOptionPane.showMessageDialog(null, "load");
+				chargerFichier();
+				break;
+			case SAVE_COMMAND:
+				sauverFichier();
+				break;
+		}
+		
+	}
+	
+	private void sauverFichier() {
+		String filename = nomFichier.getText();
+		File f = new File(filename);
+		try {
+			PrintWriter pw = new PrintWriter(f);
+			pw.print(contenuFichier.getText());
+			pw.close();
+			JOptionPane.showMessageDialog(null, "sauvegarde effectuée");
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, 
+					"impossible d'ecrire", 
+					"erreur",
+					JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+	}
+	
+	private void chargerFichier() {
+		// contenu textuer du textField
+		String filename = nomFichier.getText();
+		File f = new File(filename);
+		if (f.exists() && f.canRead() && f.isFile()) {
+			try {
+				Scanner reader = new Scanner(f);
+				StringBuilder sb = new StringBuilder();
+				while (reader.hasNext()) {
+					sb.append(reader.nextLine()).append("\n");
+				}
+				reader.close();
+				contenuFichier.setText(sb.toString());
+			} catch (FileNotFoundException e) {	e.printStackTrace();}
+		}
+		else {
+			JOptionPane.showMessageDialog(null, 
+										"fichier non lisible", 
+										"erreur",
+										JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
+	}
+}
