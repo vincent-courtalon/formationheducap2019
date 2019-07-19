@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>les formulaires</title>
+    </head>
+    <body>
+        <h2>les formulaires!</h2>
+        <!--
+            si originellementles pages html servait a consulter des documents, avec
+            liens entre eux. Des le début, très rapidement, on a voulu pouvoir ajouter
+            une certaine interactivité. En particulier pouvoir soumettre des saisie
+            de l'utilisateur vers le serveur
+                soit pour l'enregistrer
+                soir pour infulencer ce qui sera afficher ensuite
+            ce sont les formulaires
+        -->
+        <!--
+            dans le protocole http, il existe 2 forme pour soumettre un formulaire
+            la forme GET ou la forme POST
+            testons déjà en forme GET
+        -->
+        <form method="GET" action="index02.html">
+            <label for="nom">votre nom</label>
+            <input type="text" name="nom" id="nom"  /> <br />
+            <label for="client">deja client?</label>
+            <!-- attention, quand la checkbox est décochée alle n'est pas envoyée -->
+            <input type="checkbox"
+                   name="client"
+                   id="client"
+                   checked /> <br />
+            <label for="formule">choisissez une formule</label>
+            <select name="formule" id="formule">
+                <option value="A">gold</option>
+                <option value="B">silver</option>
+                <option value="C" selected>bronze</option>
+                <option value="D">standard</option>
+            </select><br />
+            <label for="commentaire">vos commentaires</label>
+            <textarea rows="5" cols="50" name="commentaire" id="commentaire"></textarea><br />
+            <label>premier choix</label><input type="radio" name="choix" value="choix1" checked /><br />
+            <label>deuxieme choix</label><input type="radio" name="choix" value="choix2" /><br />
+            <label>troisieme choix</label><input type="radio" name="choix" value="choix3" /><br />
+            <label>premium</label><input type="radio" name="premium" value="oui" checked /><br />
+            <label>normal</label><input type="radio" name="premium" value="non" /><br />
+            <input type="reset" value="reinitialiser">
+            <input type="submit" value="envoyer" />
+        </form>
+        <hr />
+        <form>
+            <input type="hidden" name="idclient" value="42" id="idclient" />
+            <label for="age">votre age</label>
+            <input type="number" name="age" id="age"  step="2" /><br />
+            <label for="datenaissance">votre date de naissance</label>
+            <input type="date" name="datenaissance" id="datenaissance" /><br />
+            <label for="email">votre email</label>
+            <input type="email" name="email" id="email" /><br />
+            <label for="color">couleur de fond</label>
+            <input type="color" name="color" id="color"><br />
+            <label for="interval">interval de prix</label>
+            <input type="range" name="interval" id="interval" min="10" max="30" /><br />
+            <input type="submit" value="envoyer" />
+        </form>
+
+    </body>
+</html>

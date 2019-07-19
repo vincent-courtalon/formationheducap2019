@@ -32,6 +32,7 @@ public class MaFenetre extends JFrame {
 	// [^a-zA-Z] --> n'importe quelle caractere sauf de a à z
 	// ^ -> debut du motif   $ -> fin du motif
 	// ^to -> "toti" ok  "atoti"
+	// (ti|to|tu)  -> "ti"  ou "to" ou "tu"
 	
 	
 	// code postal simple => [0-9]{5}
@@ -39,9 +40,13 @@ public class MaFenetre extends JFrame {
 	// telephonne => 0152366478 ok 
 	//				 01 52 36 64 78 ok
 	//				 01.52.36.64.78 ok
-	//				 01 52.36.64 78 ok (bonus ko)
+	//				 01 52.36.64 78 ok (giga bonus ko)
 	//				 0a 52 36 64 78 ko
 	//				 01..52  36...64.78 ko
+	
+	// [0-9]{2}([. ]?[0-9]{2}){4}
+	// [0-9]{2}(([0-9]{2}){4}|( [0-9]{2}){4}|([.][0-9]{2}){4})
+	
 	
 	// email  =>	vincent.courtalon@gmol.com ok
 	//		  =>	toto@yahoo.fr ok
@@ -49,6 +54,8 @@ public class MaFenetre extends JFrame {
 	//		  =>    bob@@eponge.com KO
 	//		  =>    bob				KO
 	//		  =>    bob..eponge@orange.fr KO
+	
+	// [a-zA-Z0-9]+([.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+([.][a-zA-Z0-9]+)*([.][a-zA-Z0-9]{2,4})
 	
 	// superbonus -> valider une url
 	
@@ -61,7 +68,7 @@ public class MaFenetre extends JFrame {
 	public MaFenetre() {
 		super("validator");
 		
-		setSize(300, 100);
+		setSize(600, 200);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -69,8 +76,10 @@ public class MaFenetre extends JFrame {
 		setLayout(layout);
 		
 		champRegex = new JTextField();
+		champRegex.setFont(champRegex.getFont().deriveFont(40F));
 		add(champRegex);
 		champValidation = new JTextField();
+		champValidation.setFont(champValidation.getFont().deriveFont(40F));
 		add(champValidation);
 		
 		champRegex.getDocument().addDocumentListener(new DocumentListener() {

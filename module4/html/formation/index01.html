@@ -1,0 +1,133 @@
+<html>
+    <!-- l'en tete , les meta informations de la page -->
+    <head>
+        <title>bienvenue</title>
+    </head>
+    <!-- le corp de la page, autrement dit son contenu -->
+    <body>
+        <!-- titre hn  n:1-6 -->
+        <h1>bonjour, html!</h1>
+        <h2>bonjour, html!</h2>
+        <h3>bonjour, html!</h3>
+        <h4>bonjour, html!</h4>
+        <h5>bonjour, html!</h5>
+        <h6>bonjour, html!</h6>
+        <!-- paragraphe de texte -->
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima corrupti quod esse modi pariatur perferendis architecto aut deserunt fuga, voluptatibus iusto incidunt et totam repellendus iste? Alias sed consequatur mollitia eum doloremque et inventore iure, eaque, natus asperiores quia quibusdam nostrum quas quaerat debitis, quis non ex? Commodi, similique neque!
+        </p>
+        <!--
+le html est du code, donc l'indentation ne se retrouve a l'affichage
+la seule excepetion est qu'il prend en compte s'il y a une separation de mots
+ou pas ( espace, retour a la ligne)
+        la balise p (paragraphe) est ce qu'on appele une balise 'block'
+        une balise block provoque un retour a la ligne avant et après son contenu
+        et en quelque sorte une marge autour de celle-ci
+        -->
+        <p>kjghkjhkjhk</p><p>kjhkjhkjhkjhkj</p>
+        <!-- 
+        la balise a est centrale au html, elle représente un lien de navigation
+        vers un autre document ou une autre position a l'interieur du document
+        c'est une balis 'inline', pas de marge autour, ni de retour a la ligne
+        c'est la première balise que nous rencontrons avec des attributs
+        ici par exemple, href est l'adresse ou dirige le lien
+        target altere la manière dont le lien sera ouvert
+        -->
+        <a href="http://www.google.com" target="_blank">vers google</a>
+        <a href="http://duckduckgo.com" target="_blank">coin coin</a>
+        <!-- pour passer a la ligne dans l'affichage, utiliser la balise br
+            c'est une balise auto fermante, on ferme directement la balise
+            sans ecrire sa contrepartie <br></br> -> <br />
+            en html5, on peut même utiliser juste <br> sans la fermer
+        -->
+        <br />
+        <!-- ligne horizontale -->
+        <hr />
+        <!-- unordered liste, liste de puces non numérotés-->
+        <ul>
+            <!-- list item, un des elements de la liste-->
+            <li>caf&eacute; &hearts;&hearts;&hearts;</li> 
+            <!--  &xxxx; est une entite html, cela permet d'afficher des caracteres 'spéciaux'
+             comme les accents, ou encore les caractere < > & etc... -->
+            <li>th&eacute;</li>
+            <li>chocolat</li>
+            <li>potage tomate</li>
+            <li>tisane</li>
+        </ul>
+        <!-- ordered list, idem, mais numéroté-->
+        <ol>
+            <!-- list item, un des elements de la liste-->
+            <li>caf&eacute; &hearts;&hearts;&hearts;</li> 
+            <!--  &xxxx; est une entite html, cela permet d'afficher des caracteres 'spéciaux'
+                comme les accents, ou encore les caractere < > & etc... -->
+            <li>th&eacute;</li>
+            <li>chocolat</li>
+            <li>potage tomate</li>
+            <li>tisane</li>
+        </ol>
+        <ul>
+            <li>caf&eacute; &hearts;&hearts;&hearts;</li> 
+            <li>th&eacute;</li>
+            <ul>
+                <li>vert</li>
+                <li>menthe</li>
+                <li>citron</li>
+            </ul>
+            <li>chocolat</li>
+            <li>potage tomate</li>
+            <li>tisane</li>
+        </ul>
+        <!--
+            tableau html permet d'afficher des données tabulaires
+            Ils sont hautement configurable, notamment les fusions
+            de cellules
+        -->
+        <table border="1" width="50%">
+            <!-- en tete du tableau-->
+            <thead>
+                <!-- table row-->
+                <tr>
+                    <!-- titre de colonne -->
+                    <th width="50%">nom pays</th>
+                    <th>capital pays</th>
+                    <th>monnaie du pays</th>
+                </tr>
+            </thead>
+            <!-- corps du tableau -->
+            <tbody>
+                <tr>
+                    <!-- table data -->
+                    <td>France</td>
+                    <td>Paris</td>
+                    <td rowspan="3">Euro</td>
+                </tr>
+                <tr>
+                    <td>Espagne</td>
+                    <td>Madrid</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Luxembourg</td>
+                </tr>
+                <tr>
+                    <td>Japon</td>
+                    <td>Tokyo</td>
+                    <td>Yen</td>
+                </tr>
+                <tr>
+                    <td>Etats-Unis</td>
+                    <td>Washington</td>
+                    <td>US dollards</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- balise img, insertion d'une image -->
+        <!-- une adresse dans un page html (href, src) peur prendre 3 formes -->
+        <!-- forme relative, part de ouse trouve le fichier html pas de / au debut -->
+        <img src="images/bob.jpg" alt="bob et patrick" />
+        <!-- forme 'site/serveur', part de la racine de notre site, c.a.d après le nom de domaine, / au debut -->
+        <img src="/formation/images/bob.jpg" alt="bob et patrick" />
+        <!-- forme absolue, adresse internet/url complete -->
+        <img src="http://localhost/formation/images/bob.jpg" alt="bob et patrick"/>
+
+    </body>
+</html>

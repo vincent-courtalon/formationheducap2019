@@ -1,0 +1,52 @@
+h1 {
+    text-align: center;
+}
+
+div#colonne_gauche {
+    width: 20%;
+    position: relative;
+    float: left;
+}
+div#colonne_centre {
+    width: 60%;
+    position: relative;
+    float: left;
+}
+div#colonne_droite {
+    width: 20%;
+    position: relative;
+    float: left;
+}
+
+div#colonne_gauche>div.quick_news{
+    margin: 10px 2% 0px 2%;
+    border: solid black 2px;
+    background-color: rgb(165, 211, 147);
+    padding: 2%;
+    border-radius: 5px 10px;
+    text-align: justify;
+    text-justify: inter-word;   
+}
+
+div#colonne_centre>div.article{
+    margin: 20px 4% 0px 4%;
+    border: solid black 2px;
+    background-color: lightskyblue;
+    padding: 3%;
+    border-radius: 5px 10px;
+    box-shadow: 10px 10px 5px darkblue;
+    text-align: justify;
+    text-justify: inter-word;   
+}
+
+div#colonne_droite>div.pub{
+    margin: 20px 4% 0px 4%;
+    border: solid black 2px;
+    background-color: violet;
+    padding: 3%;
+    border-radius: 5px 10px;
+      
+}
+div#colonne_droite>div.image img {
+    width: 70%;
+}

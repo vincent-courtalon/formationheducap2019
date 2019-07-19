@@ -1,0 +1,46 @@
+
+div {
+    margin: 1%;
+    border: solid black 2px;
+}
+
+div:hover {
+    border: dashed blue; 
+}
+
+div#boite1 {
+    background-color: aqua;
+}
+
+div#boite2 {
+    background-color: coral;
+    position: relative;
+    width: 50%;
+    left: 20%;
+    top: 50px;
+    z-index: 10;
+}
+
+div#boite3 {
+    background-color: thistle;
+    z-index: 20;
+    position: relative;
+}
+
+div#boite4 {
+    background-color: deeppink;
+    /*position: absolute;*/
+    position: fixed;
+    left: 10%;
+    top: 100px;
+}
+
+div#boite5 {
+    background-color: greenyellow;
+}
+
+/* un espace -> descendant  '>' -> enfant direct  */
+div#boite5>span.gras {
+    font-weight: 700;
+    text-decoration: line-through;
+}

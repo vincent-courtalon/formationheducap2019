@@ -1,0 +1,54 @@
+
+/* on peut tout simplement désigné les balises visées */
+
+h2 {
+    color: crimson;
+    text-align: center;
+}
+
+p {
+    background-color: lightgrey;
+}
+/* #id  -> vise un identifiant, la balise devant est optionnelle */
+p#message_top {
+    color: blue;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* .class vise toutes les balises d'une certaine classe, la balise devant est optionnelle*/
+p.information {
+    background-color: deepskyblue;
+    color: red;
+    border: 2px black solid;
+}
+
+div.boiteA {
+    border: 2px black solid;
+    margin: 3%;
+    width: 50%;
+}
+
+div#boite1 {
+    background-color: bisque;
+    padding: 3%;
+}
+
+div#col1 {
+    border: 2px black dashed;
+    background-color: darkkhaki;
+    width: 40%;
+    position: relative;
+    float: left;
+    margin: 3%;
+}
+div#col2 {
+    border: 2px black solid;
+    background-color: darksalmon;
+    width: 40%;
+    position: relative;
+    float: left;
+    margin: 3%;
+  /*  left: 100px;
+    top: -100px;*/
+}
