@@ -1,0 +1,7 @@
+ul.invisible {
+    display: none;
+}
+
+ul.visible {
+    display: block;
+}
