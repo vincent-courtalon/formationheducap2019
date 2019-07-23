@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculatrice et email</title>
+    <link rel="stylesheet" href="css/style10.css">
+    <script type="text/javascript" src="js/script10.js"></script>
+</head>
+<body onload="init()">
+    <h2>calculatrice et email</h2>
+    operande 1: <input type="number" name="operande1" id="operande1" /><br />
+    operande 2: <input type="number" name="operande2" id="operande2" /><br />
+    <button id="addition">+</button>
+    <button id="soustraction">-</button>
+    <button id="multiplication">*</button>
+    <button id="division">/</button><br />
+    <div id="reponsecalcul"></div>
+    <hr />
+    <form>
+        <label for="email">email: </label><input type="text" name="email" id="email" />
+        <button id="ajout">ajouter email</button>
+    </form>
+    <div id="listeemails"></div>
+    <hr />
+
+</body>
+</html>

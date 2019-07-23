@@ -1,0 +1,33 @@
+
+div#reponsecalcul {
+    margin: 10px;
+    padding: 10px;
+    border: solid 2px black;
+    background-color: lightblue;
+    text-align: center;
+}
+
+div#listeemails {
+    margin: 10px;
+    padding: 10px;
+    border: solid 2px black;
+    background-color: rgb(174, 223, 182);
+    text-align: center;
+}
+div.divemail{
+    margin: 10px;
+    padding: 10px;
+    border: solid 2px black;
+    border-radius: 10px 10px;
+    background-color: rgb(255, 222, 181)
+}
+div.divemail:hover{
+    background-color: rgb(242, 243, 178)
+}
+
+.valide {
+    background-color: green;
+}
+.invalide {
+    background-color: pink;
+}
