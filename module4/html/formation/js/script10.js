@@ -55,12 +55,6 @@ function addEmail(evt) {
     if (pattern.test(saisie)) {
         emails.push(saisie);
         refreshEmails();
-     /*   var div = document.createElement("div");
-        div.innerText=saisie;
-        div.className="divemail";
-        var listeemails = document.getElementById("listeemails");
-        listeemails.appendChild(div);
-        div.addEventListener("click", removeEmail);*/
         document.getElementById("email").className="valide";
     }
     else {

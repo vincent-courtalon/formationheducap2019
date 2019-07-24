@@ -1,0 +1,27 @@
+div#formTodo {
+    width: 90%;
+    border: solid 2px darkgray;
+    background-color: beige;
+    padding: 3%;
+}
+div#todoliste {
+    margin-top: 10px;
+    width: 90%;
+    border: solid 2px black;
+    background-color: lightcyan;
+    padding: 3%;
+}
+
+div.todoElement {
+    margin-top: 10px;
+    width: 90%;
+    border: solid 2px black;
+    padding: 3%;
+}
+
+div.termine {
+    background-color: pink;
+}
+div.planifie {
+    background-color: lightblue;
+}
