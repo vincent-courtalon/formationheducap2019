@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>ma premiere page</title>
+</head>
+<body>
+	<h1>bienvenue sur TOMCAT!!</h1>
+	<p>
+		le serveur servlet et jsp
+	</p>
+	<form method="post" action="CalculServlet">
+		<label for="operande1">operande 1</label>
+		<input type="number" name="operande1" id="operande1" /><br />
+		<label for="operande2">operande 2</label>
+		<input type="number" name="operande2" id="operande2" /><br />
+		<select name="operateur" id="operateur">
+			<option value="+" selected="selected">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select><br />
+		<input type="submit" value="calculer" />
+	</form>
+</body>
+</html>
