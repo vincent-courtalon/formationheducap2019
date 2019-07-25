@@ -39,9 +39,15 @@ public class FilmServlet extends HttpServlet {
 			try {
 				// afficher le détail d'un film
 				int id = Integer.parseInt(pathinfo.substring(1));
-				// je récupere le film
-				Film f = filmDAO.findOne(id);
-				request.setAttribute("film", f);
+				if (id > 0) {
+					// je récupere le film
+					request.setAttribute("film", filmDAO.findOne(id));
+				}
+				else {
+					// c'est une creation de film
+					request.setAttribute("film", new Film());
+				}
+				
 				getServletContext().getRequestDispatcher("/film/edit.jsp")
 									.forward(request, response);
 				return;
@@ -56,7 +62,17 @@ public class FilmServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		int id = Integer.parseInt(request.getParameter("id"));
+		String titre = request.getParameter("titre");
+		int longueur = Integer.parseInt(request.getParameter("longueur"));
+		int annee = Integer.parseInt(request.getParameter("annee"));
+		String genre =  request.getParameter("genre");
+		
+		Film f = new Film(id, titre, longueur, annee, genre);
+		
+		filmDAO.save(f);
+		
+		response.sendRedirect("/webjdbcdaoform/");
 	}
 
 }

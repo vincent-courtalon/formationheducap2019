@@ -33,5 +33,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<a href="/webjdbcdaoform/FilmServlet/0">creer nouveau film</a>
 </body>
 </html>
