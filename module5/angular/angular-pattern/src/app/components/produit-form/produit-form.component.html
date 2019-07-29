@@ -1,0 +1,11 @@
+<div id="formPanier">
+    <form>
+        <label for="id">id produit</label>
+        <input type="number" id="id" name="id" [(ngModel)]="id" /><br />
+        <label for="nom">nom produit</label>
+        <input type="text" id="nom" name="nom" [(ngModel)]="nom" /><br />
+        <label for="prix">prix produit</label>
+        <input type="number" id="prix" name="prix" [(ngModel)]="prix" /><br />
+        <button (click)="clickProduit()">ajouter au panier</button>
+    </form>
+</div>

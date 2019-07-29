@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+div#listePanier {
+    border: solid black 2px;
+    padding: 10px;
+    width: 25%;
+    position: relative;
+    float: left;
+    background-color: azure;
+
+}
+
+div#formPanier{
+    border: solid black 2px;
+    padding: 10px;
+    width: 60%;
+    position: relative;
+    float: left;
+    background-color: gainsboro;
+    height: 500px;
+}
+div#panierSummary {
+    border: solid black 2px;
+    padding: 10px;
+    width: 25%;
+    position: relative;
+    float: left;
+    background-color: darksalmon
+}
+
+div#panierCompteur {
+    border: solid black 2px;
+    padding: 10px;
+    width: 25%;
+    position: relative;
+    float: left;
+    background-color: lavenderblush;
+}
+
