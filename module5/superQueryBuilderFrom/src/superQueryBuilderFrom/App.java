@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import superQueryBuilderFrom.QueryBuilder.TypeWhere;
 
@@ -16,7 +17,46 @@ public class App {
 			Connection base = DriverManager.getConnection("jdbc:mysql://localhost:3306/base_web1",
 					"root", "");
 			
+			Scanner lecteur = new Scanner(System.in);
 			QueryBuilder builder = new QueryBuilder("films", base);
+			
+			System.out.println("id du film a effacer ?");
+			int id = Integer.parseInt(lecteur.nextLine());
+			PreparedStatement deleteStat = 
+					builder.addWhere("id", TypeWhere.EQUAL, 1)
+							.delete()
+							.build();
+			
+			deleteStat.setInt(1, id);
+			deleteStat.executeUpdate();
+			
+		/*	System.out.println("titre nouveau film ? ");
+			String titre = lecteur.nextLine();
+			
+			System.out.println("longueur nouveau film? ");
+			int longueur = Integer.parseInt(lecteur.nextLine());
+			
+			System.out.println("annee nouveau film? ");
+			int annee = Integer.parseInt(lecteur.nextLine());
+			
+			System.out.println("genre nouveau film ? ");
+			String genre = lecteur.nextLine();
+			
+			PreparedStatement insertStat = 
+					builder.addField("titre")
+							.addField("longueur")
+							.addField("annee")
+							.addField("genre")
+							.insert()
+							.build();
+					
+			insertStat.setString(1, titre);
+			insertStat.setInt(2, longueur);
+			insertStat.setInt(3, annee);
+			insertStat.setString(4, genre);
+			insertStat.executeUpdate();
+			*/
+			
 			
 			/*PreparedStatement updateStat =
 					 builder.addField("longueur")
@@ -30,6 +70,7 @@ public class App {
 			updateStat.setInt(3, 1); // film d'id 1
 			updateStat.executeUpdate();
 			*/
+			/*
 			PreparedStatement selectStat = 
 					builder.addField("id")
 							.addField("titre")
@@ -49,7 +90,7 @@ public class App {
 								+ rs.getInt("annee"));
 			}
 			rs.close();
-			
+			*/
 			base.close();
 			
 		} catch (ClassNotFoundException e) {e.printStackTrace();

@@ -105,6 +105,8 @@ public class QueryBuilder {
 			switch (type) {
 				case SELECT: return buildSelect();
 				case UPDATE: return buildUpdate();
+				case INSERT: return buildInsert();
+				case DELETE: return buildDelete();
 			}
 		} catch (SQLException e) {e.printStackTrace();}
 		return null;
@@ -155,6 +157,36 @@ public class QueryBuilder {
 		System.out.println(sb.toString());
 		return base.prepareStatement(sb.toString());
 	}
+	
+	private PreparedStatement buildInsert() throws SQLException {
+		StringBuilder sb = new StringBuilder("INSERT INTO `");
+		sb.append(tableName).append("` (`");
+		if (this.selectedFields.isEmpty())
+			throw new SQLException("can not insert with no fields");
+		sb.append(String.join("`,`", this.selectedFields))
+		  .append("`) VALUES (")
+		  .append(String.join(",", selectedFields.stream().map(c -> "?").collect(Collectors.toList())))
+		  .append(") ");
+		 System.out.println("requette = " + sb.toString());
+		 return base.prepareStatement(sb.toString());
+	}
+	
+	private PreparedStatement buildDelete() throws SQLException {
+		StringBuilder sb = new StringBuilder("DELETE FROM `");
+		sb.append(tableName).append("` WHERE ");
+		if (whereClauses.isEmpty())
+			throw new SQLException("what are you doing!! use where clause with delete");
+		
+		List<String> clauses = this.whereClauses.stream()
+				   .sorted((c1, c2) -> Integer.compare(c1.position, c2.position))
+				   .map(c -> c.toString())
+				   .collect(Collectors.toList());
+		sb.append(String.join(" AND ", clauses));
+		
+		System.out.println("requete = " + sb.toString());
+		return base.prepareStatement(sb.toString());
+	}
+	
 	
 
 }
