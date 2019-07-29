@@ -19,7 +19,7 @@ public class App {
 			
 			Scanner lecteur = new Scanner(System.in);
 			QueryBuilder builder = new QueryBuilder("films", base);
-			
+	/*		
 			System.out.println("id du film a effacer ?");
 			int id = Integer.parseInt(lecteur.nextLine());
 			PreparedStatement deleteStat = 
@@ -29,7 +29,7 @@ public class App {
 			
 			deleteStat.setInt(1, id);
 			deleteStat.executeUpdate();
-			
+		*/	
 		/*	System.out.println("titre nouveau film ? ");
 			String titre = lecteur.nextLine();
 			
@@ -70,27 +70,29 @@ public class App {
 			updateStat.setInt(3, 1); // film d'id 1
 			updateStat.executeUpdate();
 			*/
-			/*
+			
 			PreparedStatement selectStat = 
 					builder.addField("id")
 							.addField("titre")
 							.addField("annee")
 							.addField("longueur")
 							.addWhere("annee", TypeWhere.LESS, 1)
-							.addWhere("longueur", TypeWhere.MORE, 2)
+			//				.addWhere("longueur", TypeWhere.MORE, 2)
+							.addSort("longueur", false)
 							.select()
 							.build();
 			selectStat.setInt(1, 1990);
-			selectStat.setInt(2, 120);
+			//selectStat.setInt(2, 120);
 			
 			ResultSet rs = selectStat.executeQuery();
 			while (rs.next()) {
 				System.out.println(rs.getInt("id") +  " - "
 								+ rs.getString("titre") + " - " 
-								+ rs.getInt("annee"));
+								+ rs.getInt("annee") + " - "
+								+ rs.getInt("longueur"));
 			}
 			rs.close();
-			*/
+			
 			base.close();
 			
 		} catch (ClassNotFoundException e) {e.printStackTrace();

@@ -13,6 +13,8 @@ public class QueryBuilder {
 	private TypeRequette type;
 	private List<String> selectedFields;
 	private List<WhereClause> whereClauses;
+	private List<OrderByClause> orderByClauses;
+	
 	
 	public enum TypeRequette {
 		SELECT,
@@ -28,6 +30,27 @@ public class QueryBuilder {
 		LESS_OR_EQUAL,
 		MORE_OR_EQUAL
 	}
+	// représente un tri par un champ
+	public static class OrderByClause {
+		private final String fieldName;
+		private final boolean direction;
+		
+		public OrderByClause(String fieldName, boolean direction) {
+			this.fieldName = fieldName;
+			this.direction = direction;
+		}
+		public String getFieldName() { return fieldName; }
+		public boolean isDirection() { return direction; }
+		
+		@Override
+		public String toString() {
+			StringBuilder sb = new StringBuilder(" `");
+			sb.append(fieldName).append("` ")
+								.append(direction? "ASC " : "DESC ");
+			return sb.toString();					
+		}
+	}
+	
 	
 	// représente une condition du where
 	public static class WhereClause {
@@ -68,6 +91,7 @@ public class QueryBuilder {
 		this.type = TypeRequette.SELECT;
 		this.selectedFields = new ArrayList<String>();
 		this.whereClauses = new ArrayList<>();
+		this.orderByClauses = new ArrayList<>();
 	}
 
 	public QueryBuilder addField(String fieldName) {
@@ -77,6 +101,11 @@ public class QueryBuilder {
 	
 	public QueryBuilder addWhere(String fieldName, TypeWhere type, int position) {
 		this.whereClauses.add(new WhereClause(fieldName, type, position));
+		return this;
+	}
+	
+	public QueryBuilder addSort(String fieldName, boolean direction) {
+		this.orderByClauses.add(new OrderByClause(fieldName, direction));
 		return this;
 	}
 	
@@ -132,6 +161,17 @@ public class QueryBuilder {
 									   .collect(Collectors.toList());
 			sb.append(" WHERE ")
 			  .append(String.join(" AND ", clauses));
+		}
+		
+		if (!orderByClauses.isEmpty()) {
+			// je transforme mes OrderClause en chaine de caractere avec map et toString()
+			// puis je les colles ensemble séparé par des virgules (avec String.join)
+			// et enfin je l'ajoute a la requette derrière un "ORDER BY"
+			sb.append(" ORDER BY ")
+			  .append(String.join(",",
+					  orderByClauses.stream()
+					  				.map(o -> o.toString())
+					  				.collect(Collectors.toList())));
 		}
 
 		System.out.println("requette = " + sb.toString());
