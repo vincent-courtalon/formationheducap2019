@@ -16,6 +16,8 @@ public class FilmDAO {
 	public static final String SELECT_ONE_SQL = "SELECT `id`,`titre`,`longueur`,`annee`,`genre` FROM `films` WHERE `id`=?";
 	public static final String INSERT_ONE_SQL = "INSERT INTO `films` (`titre`,`longueur`,`annee`,`genre`) VALUES(?,?,?,?)";
 	public static final String UPDATE_ONE_SQL = "UPDATE `films` set `titre`=?,`longueur`=?,`annee`=?,`genre`=? WHERE `id`=?";
+	public static final String SEARCH_BY_TITRE_SQL =
+		"SELECT `id`,`titre`,`longueur`,`annee`,`genre` FROM `films` WHERE `titre` LIKE ?";
 	
 	private Connection base;
 	
@@ -23,6 +25,7 @@ public class FilmDAO {
 	private PreparedStatement findOneStatement;
 	private PreparedStatement insertOneStatement;
 	private PreparedStatement updateOneStatement;
+	private PreparedStatement searchByTitreStatement;
 
 	public FilmDAO(Connection base) {
 		this.base = base;
@@ -32,6 +35,7 @@ public class FilmDAO {
 			findOneStatement = base.prepareStatement(SELECT_ONE_SQL);
 			insertOneStatement = base.prepareStatement(INSERT_ONE_SQL);
 			updateOneStatement = base.prepareStatement(UPDATE_ONE_SQL);
+			searchByTitreStatement = base.prepareStatement(SEARCH_BY_TITRE_SQL);
 		} catch (SQLException e) {e.printStackTrace();}
 	}
 	
@@ -43,6 +47,21 @@ public class FilmDAO {
 						rs.getInt("annee"),
 						rs.getString("genre"));
 	}
+	
+	public List<Film> findByTitre(String searchterm) {
+		ArrayList<Film> films = new ArrayList<>();
+		try {
+			searchByTitreStatement.clearParameters();
+			searchByTitreStatement.setString(1, "%" + searchterm + "%");
+			ResultSet rs = searchByTitreStatement.executeQuery();
+			while (rs.next()) {
+				films.add(fetchFromResultSet(rs));
+			}
+			rs.close();
+		} catch (SQLException e) {e.printStackTrace();}
+		return films;
+	}
+	
 	
 	public List<Film> findAll() {
 		ArrayList<Film> films = new ArrayList<>();

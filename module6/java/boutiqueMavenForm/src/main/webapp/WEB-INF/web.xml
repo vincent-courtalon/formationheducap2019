@@ -35,7 +35,7 @@
 
   <servlet-mapping>
   	<servlet-name>indexServlet</servlet-name>
-  	 <url-pattern>/Index</url-pattern>
+  	 <url-pattern>/film</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
