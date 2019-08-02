@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="struts_blank" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <display-name>simple tomcat8 project</display-name>
+
+ <context-param>
+ 	<param-name>driverClass</param-name>
+ 	<param-value>com.mysql.jdbc.Driver</param-value>
+ </context-param>
+ <context-param>
+ 	<param-name>databaseUrl</param-name>
+ 	<param-value>jdbc:mysql://localhost:3306/base_fnoc</param-value>
+ </context-param>
+ <context-param>
+ 	<param-name>username</param-name>
+ 	<param-value>root</param-value>
+ </context-param>
+ <context-param>
+ 	<param-name>password</param-name>
+ 	<param-value></param-value>
+ </context-param>
+ <listener>
+ 	<listener-class>com.edugroupe.librairiefnoc.util.DatabaseListener</listener-class>
+ </listener> 
+  
+  <servlet>
+    <servlet-name>indexServlet</servlet-name>
+    <servlet-class>
+      com.edugroupe.librairiefnoc.servlets.IndexServlet
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>indexServlet</servlet-name>
+  	 <url-pattern>/livre</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>
