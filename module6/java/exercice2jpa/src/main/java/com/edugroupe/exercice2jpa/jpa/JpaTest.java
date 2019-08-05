@@ -81,8 +81,13 @@ public class JpaTest {
 		//----------------------------------------------------
 		tx.commit();
 		em.close();
+		// ce ne sera pas propager dans la base!
+		p.setNom("quinoa des ameriques");
+		saveproduit = p;
 	}
-
+	// me rappeler du produit entre 2 appels test2 et test3
+	static Produit saveproduit;
+	
 	public static void test3(EntityManagerFactory emf)
 	{
 		// on recupere un entityManager
@@ -91,6 +96,11 @@ public class JpaTest {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		//----------------------------------------------------
+		// em.persist(saveproduit);
+		// sp est suivi par l'entity manager et a pris en compte
+		// les modifications précédentes
+		Produit sp = em.merge(saveproduit);
+		System.out.println(sp);
 		
 		TypedQuery<Produit> q1 = em.createQuery(
 				"select p from Produit as p where p.stock > :stock_min", Produit.class);
