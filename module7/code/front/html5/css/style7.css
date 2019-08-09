@@ -1,0 +1,42 @@
+
+ul.menucss3 {
+    width: 400px;
+}
+
+ul.menucss3 li {
+    width: 50%;
+    display: inline-block;
+    background-color: #eeaaaa;
+    border: 1px solid black;
+    text-align: center;
+    transition-property: background-color, width;
+    transition-duration: 2s;
+    transition-timing-function: ease-in-out;
+}
+
+ul.menucss3 li:hover {
+    width: 100%;
+    background-color: #aaeeaa;
+    font-weight: bold;
+}
+
+table#matable {
+    width: 500px;
+    background-color: #55dd66;
+}
+
+table#matable tr:nth-child(2n+1) {
+    background-color: #dd5566;
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    div.divmedia {
+        margin-top: 10px;
+        background-color: aquamarine;
+        width: 50%;
+        border: solid 1px black;
+    }
+    .divmedia p#message::after {
+        content: " dans un ecran moyen";
+    }
+}
