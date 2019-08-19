@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+          http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-4.0.xsd
+            http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+           http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
+			default-autowire="byName">
+
+
+<bean id="rd"  class="java.util.Random" />
+
+<bean id="qb1" class="com.edugroupe.springKamelotForm.beans.QueteBasique">
+	<constructor-arg ref="rd" />
+	<property name="description" value="compter les pierres du chateau" />
+	<property name="difficulte" value="10" />
+</bean>
+
+<bean id="qb2" class="com.edugroupe.springKamelotForm.beans.QueteBasique">
+	<constructor-arg ref="rd" />
+	<property name="description" value="inspecter la taverne du village" />
+	<property name="difficulte" value="3" />
+</bean>
+
+<bean id="qe1" class="com.edugroupe.springKamelotForm.beans.QueteEpique">
+	<constructor-arg ref="rd" />
+	<property name="description" value="manger un sanglier de la montagne de feu" />
+	<property name="difficulte" value="8" />
+</bean>
+
+
+<bean id="jacquouille" class="com.edugroupe.springKamelotForm.beans.ChevalierBasique">
+	<constructor-arg value="Jacquouille la fripouille" />
+	<property name="competence" value="8" />
+	<property name="quete" ref="qb2" />
+</bean>
+
+<bean id="merlin" class="com.edugroupe.springKamelotForm.beans.Merlin">
+	<property name="actions">
+		<list>
+			<value>sauver</value>
+			<value>trucider</value>
+			<value>rapporter</value>
+			<value>escorter</value>
+			<value>purifier</value>
+		</list>
+	</property>
+	<property name="sujets">
+		<list>
+			<value>dame</value>
+			<value>princesse</value>
+			<value>dragon</value>
+			<value>tresor</value>
+			<value>chevalier</value>
+		</list>
+	</property>
+	<property name="qualificatifs">
+		<list>
+			<value>du lac</value>
+			<value>lambda</value>
+			<value>de feu</value>
+			<value>mystique</value>
+			<value>rouge</value>
+			<value>mignon</value>
+		</list>
+	</property>
+</bean>
+
+<bean id="caradoc" class="com.edugroupe.springKamelotForm.beans.ChevalierBasique">
+	<constructor-arg value="Caradoc de vannes"/>
+	<property name="competence" value="11" />
+	<property name="quete">
+		<bean 	class="com.edugroupe.springKamelotForm.beans.Quete" 
+				factory-bean="merlin"
+				factory-method="genererQuete"/>
+	</property>
+</bean>
+
+<bean id="jolly_jumper" 
+	class="com.edugroupe.springKamelotForm.beans.Cheval"
+	 lazy-init="true"
+	 scope="prototype" >
+	<property name="nom" value="jolly jumper" />
+</bean>
+
+<bean id="lancelot" 
+		class="com.edugroupe.springKamelotForm.beans.ChevalierTableRonde"
+		 lazy-init="true">
+	<constructor-arg value="lancelot du lac"/>
+	<property name="competence" value="15" />
+	<property name="monture" ref="jolly_jumper" />
+	<property name="quete">
+		<bean 	class="com.edugroupe.springKamelotForm.beans.Quete" 
+				factory-bean="merlin"
+				factory-method="genererQuete"/>
+	</property>
+</bean>
+
+<bean id="perceval" 
+		class="com.edugroupe.springKamelotForm.beans.ChevalierTableRonde"
+		 lazy-init="true">
+	<constructor-arg value="Perceval de galles"/>
+	<property name="competence" value="17" />
+	<property name="monture" ref="jolly_jumper" />
+	<property name="quete">
+		<bean 	class="com.edugroupe.springKamelotForm.beans.Quete" 
+				factory-bean="merlin"
+				factory-method="genererQuete"/>
+	</property>
+</bean>
+
+<bean id="assurancetourix" class="com.edugroupe.springKamelotForm.beans.Menestrel" />
+
+<!-- AOP permet d'ajouter des execution de code, de methode, avant ou après certains evenements  -->
+<aop:config>
+	<aop:aspect ref="assurancetourix">
+		<!-- on definit des points de coupe, c.a.d ou on va insérer l'appel a chanter avant
+		  ou l'appel chanter apres
+		  cela s'appliquera sur tous les beans spring qui corresponde au motif indiqué -->
+		  <aop:pointcut 
+		  		expression="execution(* com.edugroupe.springKamelotForm.beans.ChevalierTableRonde.partir*(..)) and target(bean)"
+		  		id="avantQuete"/>
+		  <aop:pointcut 
+		  		expression="execution(* com.edugroupe.springKamelotForm.beans.Chevalier*.partir*(..)) and target(bean)"
+		  		id="apresQuete"/>
+		  		
+		  <aop:before method="chanterAvant"
+		  			  pointcut-ref="avantQuete"
+		  			  arg-names="bean"/>
+		  <aop:after-returning 
+		  			  method="chanterApres"
+		  			  pointcut-ref="apresQuete"
+		  			  arg-names="bean"/>
+	</aop:aspect>
+</aop:config>
+
+
+</beans>

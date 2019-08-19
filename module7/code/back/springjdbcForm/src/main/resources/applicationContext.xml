@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+          http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-4.0.xsd
+            http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+           http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
+			default-autowire="byName">
+
+<!-- ce bean indique a spring un endroit ou chercher des properties -->
+<context:property-placeholder  location="classpath*:database.properties" />
+
+<!--  ce bean se charge de la connection à la base de donnée -->
+<bean id="dataSource"
+	  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	  <property name="driverClassName" value="${database.driverName}"/>
+	  <property name="url" value="${database.url}"/>
+	  <property name="username" value="${database.username}"/>
+	  <property name="password" value="${database.password}"/>
+</bean>
+
+<!--  ce bean est un jdbcTemplate, il se charge de faciliter et simplifier l'execution 
+ 	de requette sql en jdbc et leur exploitation
+ 	il a besoin d'une dataSource, qui sera injectée automatiquement -->
+<bean id="jdbcTemplate"	class="org.springframework.jdbc.core.JdbcTemplate" />
+
+<!--  notre DAO produit, dans lequel le jdbcTemplate sera automatiquement injecté -->
+<bean id="produitDAO" class="com.edugroupe.springjdbcForm.beans.ProduitDAO" />
+
+
+</beans>
