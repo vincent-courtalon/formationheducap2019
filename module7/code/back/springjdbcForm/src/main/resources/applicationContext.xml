@@ -40,5 +40,12 @@
 <!--  notre DAO produit, dans lequel le jdbcTemplate sera automatiquement injecté -->
 <bean id="produitDAO" class="com.edugroupe.springjdbcForm.beans.ProduitDAO" />
 
+<bean id="cache" class="com.edugroupe.springjdbcForm.beans.CacheAdvice" />
 
+<aop:config>
+	<aop:pointcut 
+		expression="execution(* com.edugroupe.springjdbcForm.beans.ProduitDAO.find*(..))"
+		id="mpc"/>
+	<aop:advisor advice-ref="cache" pointcut-ref="mpc" />
+</aop:config>
 </beans>
