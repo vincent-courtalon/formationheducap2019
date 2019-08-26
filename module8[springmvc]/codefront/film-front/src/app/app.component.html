@@ -1,0 +1,25 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NOM</th>
+        <th>DUREE</th>
+        <th>DATE SORTIE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let f of films">
+        <td>{{f.id}}</td>
+        <td>{{f.nom}}</td>
+        <td>{{f.duree}}</td>
+        <td>{{f.dateSortie | date : 'medium' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>
