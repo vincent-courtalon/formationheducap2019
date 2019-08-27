@@ -1,0 +1,25 @@
+<h3>edition film {{editFilm.nom}}</h3>
+<!-- la notation avec les parentheses est utilisé pour la communication du
+ html vers le code, autrement dit des evenement ou valeur a propager
+inversement, les crochets sont utilisés dans l'autre sens, d'une variable
+vers un atribut dans votre html
+enfin, dans certains cas particulier, comme ngModel, on peut combiner les
+deux avec la notation 'banana in a box' -> [()]
+les données sont gardée synchronisée entre le code et le html
+-->
+<form class="form" (ngSubmit)="sauverFilm()">
+    <div class="form-group">
+        <label for="nom">nom du film</label>
+        <input type="text" name="nom" class="form-control" [(ngModel)]="editFilm.nom" />
+    </div>
+    <div class="form-group">
+        <label for="duree">duree du film</label>
+        <input type="text" name="duree" class="form-control" [(ngModel)]="editFilm.duree" />
+    </div>
+    <div class="form-group">
+        <label for="dateSortie">date de sortie</label>
+        <input type="date" name="dateSortie" class="form-control" [(ngModel)]="editFilm.dateSortie" />
+    </div>
+    <button class="btn btn-primary" type="submit">sauver film</button>
+
+</form>

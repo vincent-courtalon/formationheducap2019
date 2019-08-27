@@ -1,0 +1,29 @@
+<pagination [boundaryLinks]="true"
+            [totalItems]="totalItems"
+            [itemsPerPage]="taillePage"
+            [ngModel]="currentPage"
+            (pageChanged)="pageChanged($event)"></pagination> 
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>NOM</th>
+            <th>DUREE</th>
+            <th>DATE SORTIE</th>
+            <th>ACTIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let f of films.content">
+            <td>{{f.id}}</td>
+            <td>{{f.nom}}</td>
+            <td>{{f.duree}}</td>
+            <td>{{f.dateSortie | date : 'medium' }}</td>
+            <td>
+                <a routerLink='/edit/{{f.id}}' class="btn btn-success">edition</a>
+                <button (click)="effacerFilm(f.id)" class="btn btn-danger ml-3">suppression</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a routerLink='/edit/0' class="btn btn-success">creation film</a>
