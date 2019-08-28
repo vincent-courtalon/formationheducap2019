@@ -1,0 +1,44 @@
+<form>
+    <div class="form-inline">
+        <label for="recherche">recherche par titre</label>
+        <input type="text"
+               class="form-control"
+               name="recherche"
+               [ngModel]="recherche"
+               (ngModelChange)="searchTitre($event)"/> 
+    </div>
+</form>
+
+<pagination [boundaryLinks]="true"
+            [totalItems]="totalCount"
+            [itemsPerPage]="taillePage"
+            [ngModel]="noPage"
+            (pageChanged)="pageChanged($event)"></pagination> 
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>TITRE</th>
+            <th>NB PAGES</th>
+            <th>ISBN</th>
+            <th>DATE SORTIE</th>
+            <th>AUTEUR</th>
+            <th>ACTIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let li of livres.content">
+            <td>{{li.id}}</td>
+            <td>{{li.titre}}</td>
+            <td>{{li.nbPages}}</td>
+            <td>{{li.isbn}}</td>
+            <td>{{li.dateSortie | date : 'dd-MM-yyyy' }}</td>
+            <td>{{li.auteur.prenom}} {{li.auteur.nom}}</td>
+            <td>
+                <a routerLink='/livres/edit/{{li.id}}' class="btn btn-success">edition</a>
+                <button (click)="effacerFilm(li.id)" class="btn btn-danger ml-3">suppression</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a routerLink='/livres/edit/0' class="btn btn-success">creation livre</a>
