@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/repertoire"
+	xmlns:tns="http://www.example.org/repertoire"
+	elementFormDefault="qualified">
+
+	<xs:element name="repertoire">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="entree" minOccurs="1"
+					maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nom">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="50" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="prenom">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="50" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="adresse">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="rue" type="xs:string" />
+										<xs:element name="ville" type="xs:string" />
+										<xs:element name="codepostal" type="xs:string" />
+									</xs:all>
+									<xs:attribute name="codePays" type="xs:int"
+										use="required" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="contact">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="tel" type="xs:string" />
+										<xs:element name="email">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[a-zA-Z0-9.]+@[a-zA-Z0-9.]+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

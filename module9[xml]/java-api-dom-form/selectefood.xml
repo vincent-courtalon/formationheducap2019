@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<selectefoods>
+    <nourriture>
+        <name>Bagels, New York Style </name>
+        <cholesterol>0</cholesterol>
+        <sodium>510</sodium>
+    </nourriture>
+    <nourriture>
+        <name>Cole Slaw</name>
+        <cholesterol>0</cholesterol>
+        <sodium>15</sodium>
+    </nourriture>
+    <nourriture>
+        <name>Eggs</name>
+        <cholesterol>215</cholesterol>
+        <sodium>65</sodium>
+    </nourriture>
+    <nourriture>
+        <name>Soy Patties, Grilled</name>
+        <cholesterol>0</cholesterol>
+        <sodium>420</sodium>
+    </nourriture>
+</selectefoods>

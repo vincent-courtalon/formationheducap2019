@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repertoire xmlns="http://www.example.org/repertoire"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.example.org/repertoire repertoire.xsd">
+
+<entree>
+	<nom>courtalon</nom>
+	<prenom>vincent</prenom>
+	<adresse codePays="2">
+		<rue>2 rue de la paix</rue>
+		<ville>paris</ville>
+		<codepostal>75001</codepostal>
+	</adresse>
+	<contact>
+		<tel>0102030405</tel>
+		<email>bob@joe.com</email>
+	</contact>
+</entree>
+<entree>
+	<nom>bob</nom>
+	<prenom>joe</prenom>
+	<adresse codePays="2">
+		<codepostal>75013</codepostal>
+		<rue>73 rue d'ivry</rue>
+		<ville>paris</ville>
+	</adresse>
+	<contact>
+		<tel>0154354354</tel>
+		<email>ho@ho.com</email>
+	</contact>
+</entree>
+</repertoire>
