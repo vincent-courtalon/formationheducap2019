@@ -1,0 +1,9 @@
+div.my-drop-zone {
+    border: 2px dashed blue;
+    background-color: cadetblue;
+    height: 200px;
+}
+
+div.file-over {
+    background-color: chartreuse;
+}

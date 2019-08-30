@@ -1,0 +1,15 @@
+<pagination [boundaryLinks]="true"
+            [totalItems]="totalItems"
+            [itemsPerPage]="taillePage"
+            [ngModel]="noPage"
+            (pageChanged)="pageChanged($event)"></pagination> 
+<div class="row">
+    <div class="col-sm-4" *ngFor="let p of pictures.content">
+        <div class="card">
+            <img [src]="getImageUrl(p.id)" class="card-img-top" >
+            <div class="card-body">
+                <p class="card-text">{{p.titre}}</p>
+            </div>
+        </div>
+    </div>
+</div>
