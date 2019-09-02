@@ -5,9 +5,9 @@
             (pageChanged)="pageChanged($event)"
             class="mt-1"></pagination> 
 <div class="row">
-    <div class="col-sm-4" *ngFor="let p of pictures.content">
+    <div class="col-sm-3" *ngFor="let p of pictures.content">
         <div class="card">
-            <img [src]="getImageUrl(p.id)" class="card-img-top" >
+            <img [src]="getThumbnailUrl(p.id)" class="card-img-top" >
             <div class="card-body">
                 <p class="card-text">{{p.titre}}</p>
             </div>
