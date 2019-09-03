@@ -21,8 +21,8 @@ public class PictureRepositoryImpl implements PictureRepositoryCustom {
 	private FileStorageManager fileStorageManager;
 	
 	// taille des miniatures
-	public static final int THUMB_WIDTH = 164;
-	public static final int THUMB_HEIGHT = 164;
+	public static final int THUMB_WIDTH = 256;
+	public static final int THUMB_HEIGHT = 256;
 	
 	@Override
 	public boolean savePictureFile(Picture picture, InputStream file) {
@@ -53,6 +53,14 @@ public class PictureRepositoryImpl implements PictureRepositoryCustom {
 	@Override
 	public Optional<File> getPictureFile(String storageid) {
 		return fileStorageManager.getImageFile(storageid);
+	}
+	
+	@Override
+	public boolean deletePictureFile(Picture picture) {
+		// effacement image et thumbnail
+		boolean successA = fileStorageManager.deleteFile(picture.getStorageid());
+		boolean successB = fileStorageManager.deleteFile(picture.getThumbStorageId());
+		return successA && successB;
 	}
 
 }

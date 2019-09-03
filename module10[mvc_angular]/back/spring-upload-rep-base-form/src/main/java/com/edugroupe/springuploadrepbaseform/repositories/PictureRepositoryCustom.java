@@ -9,5 +9,6 @@ import com.edugroupe.springuploadrepbaseform.metier.Picture;
 public interface PictureRepositoryCustom {
 	boolean savePictureFile(Picture picture, InputStream file);
 	Optional<File> getPictureFile(String storageid);
+	boolean deletePictureFile(Picture picture);
 	
 }

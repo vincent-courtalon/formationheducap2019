@@ -51,24 +51,38 @@ public class FileStorageManager {
 
 	public Optional<File> getImageFile(String storageId) {
 		// si le répertoire de base n'est pas bon, sauve qui peut
-		if (storageRoot == null || 
-			!storageRoot.exists() ||
-			!storageRoot.isDirectory()) {
+		if (storageRoot == null || !storageRoot.exists() || !storageRoot.isDirectory()) {
 			throw new RuntimeException("storage root invalid");
 		}
-		
-		//  repbase/##
-		File rep = Paths.get(storageRoot.getAbsolutePath(), storageId.substring(0,2))
-						.toFile();
+
+		// repbase/##
+		File rep = Paths.get(storageRoot.getAbsolutePath(), storageId.substring(0, 2)).toFile();
 		if (!rep.exists() || !rep.isDirectory()) {
-			return Optional.empty(); //empty -> pas de fichier
+			return Optional.empty(); // empty -> pas de fichier
 		}
 		// chemin complet du fichier
 		File f = Paths.get(rep.getAbsolutePath(), storageId).toFile();
-		if (f!= null && f.exists() && f.isFile())
+		if (f != null && f.exists() && f.isFile())
 			return Optional.of(f);
 		else
 			return Optional.empty();
 	}
 
+	public boolean deleteFile(String storageId) {
+		if (storageRoot == null 
+			|| !storageRoot.exists()
+			|| !storageRoot.isDirectory()) {
+			return false;
+		}
+		// repbase/##
+		File rep = Paths.get(storageRoot.getAbsolutePath(), storageId.substring(0, 2)).toFile();
+		if (!rep.exists() || !rep.isDirectory()) {
+			return false; 
+		}
+		File f = Paths.get(rep.getAbsolutePath(), storageId).toFile();
+		if (f != null && f.exists() && f.isFile())
+			return f.delete();
+		else
+			return false;
+	}
 }
