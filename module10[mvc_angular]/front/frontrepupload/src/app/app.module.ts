@@ -13,6 +13,9 @@ import { ImageDetailComponent } from './components/image-detail/image-detail.com
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { NgStringPipesModule } from "angular-pipes";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,6 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
     ImageListeComponent,
     ImageUploadComponent,
     ImageDetailComponent
-
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,10 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
     FileUploadModule,
     HttpClientModule,
     FormsModule,
-    ProgressbarModule.forRoot()
+    ProgressbarModule.forRoot(),
+    NgStringPipesModule,
+    FontAwesomeModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

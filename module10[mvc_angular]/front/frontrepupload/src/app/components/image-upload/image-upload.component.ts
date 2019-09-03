@@ -33,8 +33,8 @@ export class ImageUploadComponent implements OnInit {
   }
 
   public fileOverDrop(event) {
-    console.log("file over");
-    console.log(event);
+  //  console.log("file over");
+  //  console.log(event);
     this.hasBaseDropZoneOver = event;
   }
 }

@@ -1,1 +1,24 @@
-<p>image-detail works!</p>
+<div class="row" *ngIf="editPicture">
+    <div class="col-sm-6">
+        <img [src]="getImageUrl(editPicture.id)" width="100%"/>
+    </div>
+    <div class="col-sm-6">
+        <ul>
+            <li>filename: {{editPicture.filename}}</li>
+            <li>content type: {{editPicture.contentType}}</li>
+            <li>date ajout: {{editPicture.dateAdded}}</li>
+        </ul>
+        <form>
+            <div class="form-group">
+                <label for="titre">titre image</label>
+                <input  class="form-control"
+                        type="text"
+                        name="titre"
+                        [(ngModel)]="editPicture.titre" />
+            </div>
+            <button type="submit" class="btn btn-success btn-block" (click)="savePicture()">
+                sauvegarder
+            </button>
+        </form>
+    </div>
+</div>

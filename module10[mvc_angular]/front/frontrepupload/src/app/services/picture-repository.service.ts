@@ -36,6 +36,23 @@ export class PictureRepositoryService {
              .subscribe(p => this.picturesSubject.next(p));
   }
 
+  public findById(id: number) : Promise<Picture> {
+    return this.http.get<Picture>(`${this.serviceUrl}/${id}`).toPromise();
+  }
+
+  public updatePicture(id: number, titre: string) : void {
+    let urlParams : HttpParams = new HttpParams().set('titre', titre);
+    // put d'angular me force a mattre un objet dans le corp de la requette
+    // comme je n'en ai pas ici (juste un titre), je passe un objet vide
+    this.http.put(`${this.serviceUrl}/${id}`, {}, {params: urlParams})
+             .subscribe(r => this.refreshListe());
+  }
+
+  public deletePicture(id: number) : void {
+    this.http.delete<any>(`${this.serviceUrl}/${id}`)
+             .subscribe(r => this.refreshListe());
+  }
+
   public setNopage(noPage : number) : void {
     this.noPage = noPage;
     this.refreshListe();

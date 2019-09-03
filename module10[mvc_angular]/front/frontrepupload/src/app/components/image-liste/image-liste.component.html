@@ -7,10 +7,29 @@
 <div class="row">
     <div class="col-sm-3" *ngFor="let p of pictures.content">
         <div class="card">
-            <img [src]="getThumbnailUrl(p.id)" class="card-img-top" >
+            <a [href]="getImageUrl(p.id)" data-lightbox="roadtrip" data-title="{{p.titre}}">
+                <img [src]="getThumbnailUrl(p.id)" class="card-img-top" >
+            </a>
+            
             <div class="card-body">
-                <p class="card-text">{{p.titre}}</p>
-            </div>
+                <p class="card-text">{{p.titre | truncate : 15 : '&hellip;'}}</p>
+                <a class="btn btn-success" routerLink="/details/{{p.id}}">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                </a>
+                <a class="btn btn-primary" [href]="getImageUrl(p.id)">
+                        <fa-icon [icon]="faDownload"></fa-icon>
+                </a>
+                <button class="btn btn-danger" (click)="openDeleteModal(template, p)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
+            </div>    
         </div>
     </div>
 </div>
+<ng-template #template>
+        <div class="modal-body text-center">
+          <p>Do you want to delete picture {{toDelete?.titre | truncate : 15 : '&hellip;' }}</p>
+          <button type="button" class="btn btn-danger" (click)="confirmDelete()" >Yes</button>
+          <button type="button" class="btn btn-primary" (click)="declineDelete()" >No</button>
+        </div>
+</ng-template>
