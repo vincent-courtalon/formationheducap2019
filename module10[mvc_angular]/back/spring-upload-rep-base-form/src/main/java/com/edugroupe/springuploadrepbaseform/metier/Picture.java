@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,6 +41,8 @@ public class Picture {
 				
 	@JsonIgnore
 	@ManyToMany					private Set<Tag> tags;
+	
+	//@OneToOne(mappedBy =  private Tag tag;
 	
 	public Picture(long id, String titre, LocalDateTime dateAdded, String fileName, String contentType, int width,
 			int height, String storageid, String fileHash, String thumbStorageId) {

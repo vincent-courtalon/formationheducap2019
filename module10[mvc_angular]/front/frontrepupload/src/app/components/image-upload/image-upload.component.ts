@@ -19,7 +19,8 @@ export class ImageUploadComponent implements OnInit {
     // auquel il est lié
     this.uploader = new FileUploader({
       autoUpload : true,
-      url: this.pictureRepository.getUploadUrl()
+      url: this.pictureRepository.getUploadUrl()//,
+      //additionalParameter : { pid: }
     });
     //this.uploader.queue
     // j'empeche l'uloader de mettre 'withCredential' dans
@@ -30,6 +31,7 @@ export class ImageUploadComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   public fileOverDrop(event) {
