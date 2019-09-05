@@ -2,6 +2,8 @@ package com.edugroupe.springboutiqueimageform.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -16,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -104,8 +107,26 @@ public class ProduitController {
 	
 	return new ResponseEntity<Produit>(produit, HttpStatus.ACCEPTED);
 }
-
-	
+	@DeleteMapping(value="/{id:[0-9]+}",
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> deleteProduit(@PathVariable("id") int id) {
+		Optional<Produit> oproduit = produitRepository.findById(id);
+		if (!oproduit.isPresent())
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		Produit produit = oproduit.get();
+		// effacement des images associées
+		for (Image img : produit.getImages()) {
+			imageRepository.delete(img);
+			imageRepository.deleteImageFile(img);
+		}
+		produit.getImages().clear();
+		// effacement produit
+		produitRepository.delete(oproduit.get());
+		return new ResponseEntity<Map<String,Object>>(
+						Collections.singletonMap("id_deleted", produit.getId()),
+						HttpStatus.ACCEPTED);
+	}
 	
 	
 	

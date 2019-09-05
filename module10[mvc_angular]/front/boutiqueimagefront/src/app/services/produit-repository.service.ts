@@ -9,6 +9,7 @@ import { Produit } from '../metier/produit';
 })
 export class ProduitRepositoryService {
 
+
   private serviceUrl: string = "http://localhost:8080/produits";
   // pagination
   private noPage: number;
@@ -52,5 +53,9 @@ export class ProduitRepositoryService {
                  .toPromise();
   }
 
+  deleteProduit(id: number) : void {
+    this.http.delete<any>(`${this.serviceUrl}/${id}`)
+             .toPromise().then(r => this.refreshList());
+  }
 
 }

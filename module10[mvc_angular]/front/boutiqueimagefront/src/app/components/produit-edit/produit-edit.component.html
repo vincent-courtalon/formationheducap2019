@@ -32,7 +32,7 @@
             drop your picture here!
         </div>
         <div class="row">
-            <div class="row mt-2" *ngFor="let item of uploader.queue">
+            <div class="col-sm-12 mt-2" *ngFor="let item of uploader.queue">
                 <progressbar [striped]="true" [animate]="true" [value]="item.progress">
                     {{item?.file?.name}} - {{item?.progress}}%
                 </progressbar>

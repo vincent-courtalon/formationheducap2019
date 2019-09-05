@@ -19,14 +19,17 @@
                 <a class="btn btn-success" routerLink="/edit/{{p.id}}">
                     <fa-icon [icon]="faEdit"></fa-icon>
                 </a>
+                <button class="btn btn-danger" (click)="openDeleteModal(template, p)">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
             </div>
         </div>
     </div>
 </div>
 <ng-template #template>
     <div class="modal-body text-center">
-        <p>Do you want to delete picture {{toDelete?.titre | truncate : 15 : '&hellip;' }}</p>
-        <button type="button" class="btn btn-danger" (click)="confirmDelete()">Yes</button>
-        <button type="button" class="btn btn-primary" (click)="declineDelete()">No</button>
+        <p>voulez vous effacer le produit {{toDelete?.nom | truncate : 15 : '&hellip;' }}</p>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()">Oui</button>
+        <button type="button" class="btn btn-primary" (click)="declineDelete()">Non</button>
     </div>
 </ng-template>
