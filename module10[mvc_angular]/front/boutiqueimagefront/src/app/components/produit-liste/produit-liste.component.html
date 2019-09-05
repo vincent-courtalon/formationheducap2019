@@ -1,0 +1,32 @@
+<pagination [boundaryLinks]="true"
+            [totalItems]="totalItems"
+            [itemsPerPage]="taillePage"
+            [ngModel]="noPage"
+            (pageChanged)="pageChanged($event)"
+            class="mt-1"></pagination> 
+<div class="row">
+    <div class="col-sm-3" *ngFor="let p of produits.content">
+        <div class="card">
+            <a [href]="" data-lightbox="roadtrip" data-title="{{p.nom}}">
+                <img [src]="getThumbnailProduit(p)" class="card-img-top">
+            </a>
+            <div class="card-body">
+                <p class="card-text">
+                    {{p.nom | truncate : 15 : '&hellip;'}} <br />
+                    prix: {{p.prix | round : 2 }}€ poids: {{p.poids | round : 2}}kg
+                    catagorie: {{p.categorie?.libelle}}
+                </p>
+                <a class="btn btn-success" routerLink="/edit/{{p.id}}">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #template>
+    <div class="modal-body text-center">
+        <p>Do you want to delete picture {{toDelete?.titre | truncate : 15 : '&hellip;' }}</p>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="declineDelete()">No</button>
+    </div>
+</ng-template>

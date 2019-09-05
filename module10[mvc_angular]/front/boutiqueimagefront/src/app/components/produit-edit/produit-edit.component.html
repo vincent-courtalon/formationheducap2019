@@ -1,0 +1,42 @@
+<div class="row">
+    <div *ngIf="editProduit" class="col-sm-8">
+        <form class="form" (ngSubmit)="saveProduit()">
+            <div class="form-group">
+                <label for="nom">nom produit</label>
+                <input type="text" name="nom" class="form-control" [(ngModel)]="editProduit.nom" />
+            </div>
+            <div class="form-group">
+                <label for="prix">prix produit</label>
+                <input type="text" name="prix" class="form-control" [(ngModel)]="editProduit.prix" />
+            </div>
+            <div class="form-group">
+                <label for="poids">poids produit</label>
+                <input type="text" name="poids" class="form-control" [(ngModel)]="editProduit.poids" />
+            </div>
+            <div class="form-group">
+                <label for="categorieId">categorie</label>
+                <select class="form-control" [(ngModel)]="categorieId" name="categorieId">
+                    <option *ngFor="let c of categories | async" [ngValue]="c.id">
+                        {{c.libelle}}
+                    </option>
+                </select>
+            </div>
+            <a routerLink="/produits" class="btn btn-warning">annuler</a>
+            <button class="btn btn-primary" type="submit">sauver produit</button>
+
+        </form>
+    </div>
+    <div class="col-sm-4" *ngIf="uploadActive">
+        <div class="row my-drop-zone" (fileOver)="fileOverDrop($event)" [uploader]="uploader"
+            [ngClass]="{'file-over' : hasBaseDropZoneOver}" ng2FileDrop>
+            drop your picture here!
+        </div>
+        <div class="row">
+            <div class="row mt-2" *ngFor="let item of uploader.queue">
+                <progressbar [striped]="true" [animate]="true" [value]="item.progress">
+                    {{item?.file?.name}} - {{item?.progress}}%
+                </progressbar>
+            </div>
+        </div>
+    </div>
+</div>
