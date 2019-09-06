@@ -16,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,6 +42,7 @@ public class PictureController {
 	@GetMapping(value="", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	@CrossOrigin("http://localhost:4200")
+	@PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	public Page<Picture> findAll(
 			@PageableDefault(page = 0, size = 10) Pageable page) {
 		return pictureRepository.findAll(page);
@@ -48,7 +50,8 @@ public class PictureController {
 	
 	@GetMapping(value="/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	@CrossOrigin("http://localhost:4200")	
+	@CrossOrigin("http://localhost:4200")
+	@PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	public ResponseEntity<Picture> findById(@PathVariable("id") long id) {
 		return pictureRepository.findById(id)
 								.map(p -> new ResponseEntity<>(p, HttpStatus.OK))
@@ -56,7 +59,8 @@ public class PictureController {
 	}
 	@PostMapping(value="/upload", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	@CrossOrigin("http://localhost:4200")		
+	@CrossOrigin("http://localhost:4200")
+	//@PreAuthorize("permitAll")
 	public ResponseEntity<Picture> upload(@RequestParam("file") MultipartFile file,
 										  @RequestParam("titre") Optional<String> titre){
 		try {
@@ -81,6 +85,7 @@ public class PictureController {
 	@GetMapping(value = "/{id:[0-9]+}/data")
 	@ResponseBody
 	@CrossOrigin("http://localhost:4200")
+	//@PreAuthorize("permitAll")
 	public ResponseEntity<FileSystemResource> pictureData(@PathVariable("id")long id) {
 		Optional<Picture> op = pictureRepository.findById(id);
 		if (!op.isPresent())
@@ -104,6 +109,7 @@ public class PictureController {
 	@GetMapping(value = "/{id:[0-9]+}/thumbdata")
 	@ResponseBody
 	@CrossOrigin("http://localhost:4200")
+	//@PreAuthorize("permitAll")
 	public ResponseEntity<FileSystemResource> pictureThumbData(@PathVariable("id")long id) {
 		Optional<Picture> op = pictureRepository.findById(id);
 		if (!op.isPresent())
@@ -127,6 +133,7 @@ public class PictureController {
 	@DeleteMapping(value="/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	@CrossOrigin("http://localhost:4200")
+	@PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	public ResponseEntity<Map<String, Object>> deletePicture(
 												@PathVariable("id") long id) {
 		return pictureRepository.findById(id)
@@ -143,6 +150,7 @@ public class PictureController {
 	@PutMapping(value="/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	@CrossOrigin("http://localhost:4200")
+	@PreAuthorize(value = "hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 	public ResponseEntity<Picture> updatePicture(
 					@PathVariable("id") long id,
 					@RequestParam("titre") String titre) {

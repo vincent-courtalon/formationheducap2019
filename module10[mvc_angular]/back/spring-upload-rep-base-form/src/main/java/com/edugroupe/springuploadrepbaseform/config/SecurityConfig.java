@@ -1,4 +1,4 @@
-package com.edugroupe.springsecurityjpaform.config;
+package com.edugroupe.springuploadrepbaseform.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -8,11 +8,13 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.edugroupe.springsecurityjpaform.security.MyUserDetailsService;
+import com.edugroupe.springuploadrepbaseform.security.MyUserDetailsService;
+
 
 @Configuration
 @EnableWebSecurity
@@ -21,9 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PasswordEncoder getPasswordEncoder() { 
-		//return NoOpPasswordEncoder.getInstance();
 		return new  BCryptPasswordEncoder();
-		
 	}
 
 	@Autowired
@@ -36,14 +36,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/boutique/**").authenticated()
-			.antMatchers("/user/**").hasAnyRole("USER", "ADMIN") // authenticated()
-			.and().authorizeRequests().antMatchers("/admin/**").hasAnyRole("ADMIN")
-			.and().authorizeRequests().antMatchers("/public", "/login", "/logout").permitAll()
-			.and().authorizeRequests().antMatchers("/**").denyAll()
-			//.and().httpBasic();
-			.and().formLogin().and().logout();
+		// pas de session
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and()
+				.authorizeRequests()
+				.antMatchers("/pictures", "/pictures/**").permitAll()
+				.antMatchers("/**").hasAnyRole("USER", "ADMIN") // authenticated()
+			.and().httpBasic() // ne pas utiliser de formulaire pour le login
+			.and().csrf().disable(); //désactive le jeton de protection csrf
+			
 	}
 
 }
