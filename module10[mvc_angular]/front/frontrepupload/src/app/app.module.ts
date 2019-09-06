@@ -10,12 +10,14 @@ import { ImageListeComponent } from './components/image-liste/image-liste.compon
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { ImageDetailComponent } from './components/image-detail/image-detail.component';
 
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { NgStringPipesModule } from "angular-pipes";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     NavBarComponent,
     ImageListeComponent,
     ImageUploadComponent,
-    ImageDetailComponent
+    ImageDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FontAwesomeModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

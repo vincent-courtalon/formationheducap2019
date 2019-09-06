@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ImageListeComponent } from './components/image-liste/image-liste.component';
 import { ImageDetailComponent } from './components/image-detail/image-detail.component';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
   {path: 'images', component: ImageListeComponent},
   {path: 'details/:id', component: ImageDetailComponent},
   {path: 'upload', component: ImageUploadComponent},
+  {path: 'login', component: LoginComponent},
   {path: '', redirectTo: 'images', pathMatch: 'full'}
 ];
 
