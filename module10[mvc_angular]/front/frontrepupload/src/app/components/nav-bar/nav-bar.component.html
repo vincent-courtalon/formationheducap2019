@@ -16,5 +16,16 @@
                 <a class="nav-link disabled" href="#">About</a>
             </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button (click)="logout()" *ngIf="currentUser[0]"
+                     class="btn btn-outline-success my-2 my-sm-0">
+                     {{currentUser[1].username}}
+            </button>
+            <a *ngIf="currentUser[0] == false"
+                routerLink="/login"
+                     class="btn btn-outline-success my-2 my-sm-0">
+                     login
+            </a>
+        </form>
     </div>
 </nav>

@@ -33,7 +33,8 @@ export class PictureRepositoryService {
     // j'envoie la requete ajax
     // quand j'ai la reponse, je republie dans picturesSubject
     this.http.get<Page<Picture>>(this.serviceUrl, {params: urlParams})
-             .subscribe(p => this.picturesSubject.next(p));
+             .subscribe(p => this.picturesSubject.next(p),
+                        err => this.picturesSubject.next(Page.emptyPage<Picture>()));
   }
 
   public findById(id: number) : Promise<Picture> {
