@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyTweetViewer</string>
+    <string name="ajout_tweet">ajouter un tweet</string>
+    <string name="vider_tweet">vider la liste</string>
+</resources>
