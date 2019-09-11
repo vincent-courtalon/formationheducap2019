@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FormTacheActivity">
+
+    <TextView
+        android:id="@+id/labelTitre"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="titre tache"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textAlignment="gravity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
+
+    <EditText
+        android:id="@+id/champTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="champtitre"
+        app:layout_constraintStart_toEndOf="@+id/labelTitre"
+        app:layout_constraintTop_toTopOf="@+id/labelTitre"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:id="@+id/labelContexte"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="contexte tache"
+        android:textAlignment="gravity"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTitre"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
+
+    <EditText
+        android:id="@+id/champContexte"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="champContexte"
+        app:layout_constraintStart_toEndOf="@id/labelContexte"
+        app:layout_constraintTop_toTopOf="@id/labelContexte"
+        android:layout_marginLeft="20dp"/>
+    <TextView
+        android:id="@+id/labelPriorite"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="priorite tache"
+        android:textAlignment="gravity"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelContexte"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
+
+    <EditText
+        android:id="@+id/champPriorite"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="champPriorite"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@id/labelPriorite"
+        app:layout_constraintTop_toTopOf="@id/labelPriorite"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sauver tache"
+        app:layout_constraintTop_toBottomOf="@+id/labelPriorite"
+        android:layout_marginTop="30dp"
+        android:id="@+id/buttonSave"
+        android:onClick="saveTache"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

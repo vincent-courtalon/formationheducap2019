@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Todo Manager</string>
+    <string name="action_create">creer tache</string>
+    <string name="action_clear">vider la liste</string>
+</resources>
