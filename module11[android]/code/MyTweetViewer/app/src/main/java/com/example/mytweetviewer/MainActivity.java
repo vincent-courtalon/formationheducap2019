@@ -143,11 +143,41 @@ public class MainActivity extends AppCompatActivity {
         Log.i("cyclevie", "chargement etat instance");
         this.compteurTweet = savedInstanceState.getInt("compteurTweet",
                 0);
+        Gson gson = new Gson();
+        try {
+            FileInputStream fi = getApplicationContext()
+                                    .openFileInput("tweets");
+            Scanner reader = new Scanner(fi);
+            String tweetjson = reader.nextLine();
+            tweetAdapter.clear();
+            tweetAdapter.addAll(gson.fromJson(tweetjson, Tweet[].class));
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
     }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i("cyclevie", "sauvegarde etat instance");
         outState.putInt("compteurTweet", this.compteurTweet);
+        Gson gson = new Gson();
+        ArrayList<Tweet> tweets = new ArrayList<>();
+        for (int i = 0; i < tweetAdapter.getCount(); i++) {
+            tweets.add(tweetAdapter.getItem(i));
+        }
+        String tweetsjson = gson.toJson(tweets);
+        try {
+            FileOutputStream fp = getApplicationContext().openFileOutput("tweets", MODE_PRIVATE);
+            PrintWriter pw = new PrintWriter(fp);
+            pw.print(tweetsjson);
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
