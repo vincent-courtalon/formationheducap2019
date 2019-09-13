@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactFormActivity">
+
+    <TextView
+        android:id="@+id/label_prenom_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:text="nom"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_prenom_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/label_prenom_contact"
+        app:layout_constraintTop_toTopOf="@+id/label_prenom_contact" />
+
+    <TextView
+        android:id="@+id/label_nom_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_marginTop="52dp"
+        android:text="prenom"
+        app:layout_constraintStart_toStartOf="@+id/label_prenom_contact"
+        app:layout_constraintTop_toBottomOf="@+id/label_prenom_contact" />
+
+    <EditText
+        android:id="@+id/edit_nom_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/label_nom_contact"
+        app:layout_constraintTop_toTopOf="@+id/label_nom_contact" />
+
+    <TextView
+        android:id="@+id/label_email_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="email"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/label_nom_contact"
+        app:layout_constraintTop_toBottomOf="@+id/label_nom_contact" />
+
+    <EditText
+        android:id="@+id/edit_email_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/label_email_contact"
+        app:layout_constraintTop_toTopOf="@+id/label_email_contact" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="343dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="76dp"
+        android:text="save contact"
+        app:layout_constraintEnd_toEndOf="@+id/edit_email_contact"
+        app:layout_constraintStart_toStartOf="@+id/label_email_contact"
+        app:layout_constraintTop_toBottomOf="@+id/label_email_contact"
+        android:onClick="saveContact"/>
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="343dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="76dp"
+        android:text="delete contact"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSave"
+        app:layout_constraintStart_toStartOf="@+id/buttonSave"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSave"
+        android:onClick="deleteContact"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
