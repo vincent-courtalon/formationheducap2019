@@ -8,7 +8,7 @@
     <name>librairiefnoc</name>
 
     <properties>
-        <log4j2.version>2.2</log4j2.version>
+        <log4j2.version>2.16.0</log4j2.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
